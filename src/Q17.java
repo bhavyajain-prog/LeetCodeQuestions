@@ -25,10 +25,10 @@ import java.util.List;
 public class Q17 {
     private static final HashMap<Integer, String> digit = new HashMap<>();
 
-    public List<String> letterCombinations(String digits) {
-        List<String> result = new ArrayList<>();
+    public static List<String> letterCombinations(String digits) {
+        List<String> resultList = new ArrayList<>();
         if (digits.length() == 0)
-            return result;
+            return resultList;
 
         digit.put(2, "abc");
         digit.put(3, "def");
@@ -39,6 +39,25 @@ public class Q17 {
         digit.put(8, "tuv");
         digit.put(9, "wxyz");
 
-        
+        StringBuilder sb = new StringBuilder();
+        backtrack(digits, 0, sb, resultList);
+        return resultList;
+    }
+
+    private static void backtrack(String digits, int i, StringBuilder sb, List<String> resultList) {
+        if (i >= digits.length()) {
+            resultList.add(sb.toString());
+            sb = new StringBuilder();
+            return;
+        }
+        String letters = digit.get(digits.charAt(i) - '0');
+        for (int j = 0; j < letters.length(); j++) {
+            sb.append(letters.charAt(j));
+            backtrack(digits, i + 1, sb, resultList);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+    public static void main(String[] args) {
+        System.out.println(letterCombinations("23"));
     }
 }
