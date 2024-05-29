@@ -25,35 +25,75 @@
 import DataStructures.ListNode;
 
 public class Q23 {
+    // public ListNode mergeKLists(ListNode[] lists) {
+    // if (lists == null || lists.length == 0)
+    // return null;
+
+    // ListNode head = new ListNode(0);
+    // ListNode curr = head;
+
+    // while (true) {
+    // ListNode min = null;
+    // int minIndex = -1;
+
+    // for (int i = 0; i < lists.length; i++) {
+    // if (lists[i] == null)
+    // continue;
+
+    // if (min == null || min.val > lists[i].val) {
+    // min = lists[i];
+    // minIndex = i;
+    // }
+    // }
+
+    // if (min == null)
+    // break;
+
+    // lists[minIndex] = lists[minIndex].next;
+
+    // curr.next = min;
+    // curr = curr.next;
+    // }
+    // return head.next;
+    // }
+
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0)
+        if (lists == null || lists.length == 0) {
             return null;
+        }
+        return mergeKListsHelper(lists, 0, lists.length - 1);
+    }
 
-        ListNode head = new ListNode(0);
-        ListNode curr = head;
+    private ListNode mergeKListsHelper(ListNode[] lists, int start, int end) {
+        if (start == end) {
+            return lists[start];
+        }
+        if (start + 1 == end) {
+            return merge(lists[start], lists[end]);
+        }
+        int mid = start + (end - start) / 2;
+        ListNode left = mergeKListsHelper(lists, start, mid);
+        ListNode right = mergeKListsHelper(lists, mid + 1, end);
+        return merge(left, right);
+    }
 
-        while (true) {
-            ListNode min = null;
-            int minIndex = -1;
+    private ListNode merge(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
 
-            for (int i = 0; i < lists.length; i++) {
-                if (lists[i] == null)
-                    continue;
-
-                if (min == null || min.val > lists[i].val) {
-                    min = lists[i];
-                    minIndex = i;
-                }
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                curr.next = l1;
+                l1 = l1.next;
+            } else {
+                curr.next = l2;
+                l2 = l2.next;
             }
-
-            if (min == null)
-                break;
-
-            lists[minIndex] = lists[minIndex].next;
-
-            curr.next = min;
             curr = curr.next;
         }
-        return head.next;
+
+        curr.next = (l1 != null) ? l1 : l2;
+
+        return dummy.next;
     }
 }
