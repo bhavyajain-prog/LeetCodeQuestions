@@ -20,50 +20,33 @@
 // Explanation: ".*" means "zero or more (*) of any character (.)".
 
 public class Q10 {
-    public static boolean isMatch(String s, String p) {
-        if (s == p)
-            return true;
-
-        int i = 0, j = 0;
-        while (i < s.length() && j < p.length()) {
-            if (s.charAt(i) == p.charAt(j)) {
-                i++;
-                j++;
-                continue;
-            } else if (p.charAt(j) == '.') {
-                i++;
-                j++;
-                continue;
-            } else if (p.charAt(j) == '*') {
-                if(j<p.length()-1) {
-                    // if(p.charAt(j+1) == s.charAt(i)) {
-                    //     i++;
-                    //     continue;
-                    // } else {
-                    //     return false;
-                    // }
-
-                    if(p.charAt(j+1) != s.charAt(i)) {
-                        i++;
-                        continue;
-                    } else if(i<s.length() && p.charAt(j+1) == s.charAt(i)) {
-                        j+=2;
-                        i++;
-                        continue;
-                    } else {
-                        return false;
-                    }
-                } else {
-                    return true;
-                }
-            } else {
-                return false;
+    public boolean isMatch(String s, String p) {
+        int m = s.length();
+        int n = p.length();
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        dp[0][0] = true;
+        for(int j = 1; j <= n; j++){
+            if(p.charAt(j - 1) == '*'){
+                dp[0][j] = dp[0][j - 2];
             }
         }
-        if(i<s.length()) return false;
-        return true;
-    }
-    public static void main(String[] args) {
-        System.out.println(isMatch("vijay","*y"));
+        for(int i = 1; i <= m; i++){
+            for(int j = 1; j <= n; j++){
+                char schar = s.charAt(i - 1);
+                char pchar = p.charAt(j - 1);
+                if(schar == pchar || pchar == '.'){
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+                else if(pchar == '*'){
+                    if(dp[i][j - 2]){
+                        dp[i][j] = true;
+                    }
+                    else if(schar == p.charAt(j - 2) || p.charAt(j - 2) == '.'){
+                        dp[i][j] = dp[i - 1][j];
+                    }
+                }
+            }
+        }
+        return dp[m][n];
     }
 }
