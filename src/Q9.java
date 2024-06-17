@@ -17,13 +17,15 @@
 
 public class Q9 {
 	public boolean isPalindrome(int x) {
-		int n = x,rev = 0;
-		while(n>0) {
-			int rem = n%10;
-			n/=10;
-			rev = rev*10 + rem;
+		int n = x, rev = 0;
+		while (n > 0) {
+			int rem = n % 10;
+			n /= 10;
+			rev = rev * 10 + rem;
 		}
-		if(rev==x) return true;
-		else return false;
-    }
+		if (rev == x)
+			return true;
+		else
+			return false;
+	}
 }

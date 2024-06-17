@@ -14,11 +14,11 @@ public class Q83 {
     public ListNode deleteDuplicates(ListNode head) {
         ListNode res = new ListNode(0);
         ListNode newHead = res;
-        int prev=101;
-        while(head!=null) {
-            if(prev != head.val) {
+        int prev = 101;
+        while (head != null) {
+            if (prev != head.val) {
                 res.next = new ListNode(head.val);
-                res=res.next;
+                res = res.next;
                 prev = head.val;
             }
             head = head.next;

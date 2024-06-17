@@ -9,37 +9,31 @@
 //Input: s = "cbbd"
 //Output: "bb"
 
-	
 public class Q5 {
-	int maxLength=0;
+	int maxLength = 0;
 	int start;
-	
 	public String longestPalindrome(String s) {
-		
-		for(int i=0;i<s.length();i++) {
-			//even
-			lengthOfPalindrome(s,i,i+1);
-			//odd
-			lengthOfPalindrome(s,i,i);
-			
+
+		for (int i = 0; i < s.length(); i++) {
+			lengthOfPalindrome(s, i, i + 1);
+			lengthOfPalindrome(s, i, i);
 		}
-		return s.substring(start, start+maxLength);
-    }
-	private void lengthOfPalindrome(String s,int left,int right) {
-		while(left>=0 &&  right<s.length() && s.charAt(left)==s.charAt(right)) {
+		return s.substring(start, start + maxLength);
+	}
+
+	private void lengthOfPalindrome(String s, int left, int right) {
+		while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
 			left--;
 			right++;
 		}
-		
 		left++;
 		right--;
-		
-		int length = right-left+1;
-		
-		if(length>maxLength) {
-			maxLength=length;
-			start=left;
+
+		int length = right - left + 1;
+
+		if (length > maxLength) {
+			maxLength = length;
+			start = left;
 		}
-		
 	}
 }

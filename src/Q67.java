@@ -14,30 +14,30 @@ public class Q67 {
         int i = a.length() - 1;
         int j = b.length() - 1;
         int carry = 0;
-        while (i>=0 && j>=0) {
+        while (i >= 0 && j >= 0) {
             char c = a.charAt(i);
             char d = b.charAt(j);
             int sum = c - '0' + d - '0' + carry;
-            carry = sum/2;
-            sb.append(sum%2);
+            carry = sum / 2;
+            sb.append(sum % 2);
             i--;
             j--;
         }
-        while (i>=0 && carry>=0) {
+        while (i >= 0 && carry >= 0) {
             char c = a.charAt(i);
             int sum = c - '0' + carry;
-            carry = sum/2;
-            sb.append(sum%2);
+            carry = sum / 2;
+            sb.append(sum % 2);
             i--;
         }
-        while (j>=0 && carry>=0) {
+        while (j >= 0 && carry >= 0) {
             char c = b.charAt(j);
             int sum = c - '0' + carry;
-            carry = sum/2;
-            sb.append(sum%2);
+            carry = sum / 2;
+            sb.append(sum % 2);
             j--;
         }
-        if (carry>0) {
+        if (carry > 0) {
             sb.append(carry);
         }
         return sb.reverse().toString();

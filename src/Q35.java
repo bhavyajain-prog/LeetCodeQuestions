@@ -21,5 +21,5 @@ public class Q35 {
             i++;
         }
         return i;
-    }    
+    }
 }

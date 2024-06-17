@@ -25,6 +25,7 @@
 // Example 4:
 // Input: nums = [7,3,7]
 // Output: [7,7,3]
+
 public class Q31 {
     public void nextPermutation(int[] nums) {
         int n = nums.length;

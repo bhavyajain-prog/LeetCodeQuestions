@@ -25,7 +25,7 @@ public class Q19 {
             first = first.next;
         }
 
-        while (first.next!= null) {
+        while (first.next != null) {
             first = first.next;
             second = second.next;
         }

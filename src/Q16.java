@@ -19,10 +19,10 @@ import java.util.Arrays;
 public class Q16 {
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
-        int closestSum = nums[0]+nums[1]+nums[2];
-        for (int i = 0; i < nums.length-2; i++) {
+        int closestSum = nums[0] + nums[1] + nums[2];
+        for (int i = 0; i < nums.length - 2; i++) {
             int k = nums.length - 1;
-            int j = i+1;
+            int j = i + 1;
             while (j < k) {
                 int sum = nums[i] + nums[j] + nums[k];
 
