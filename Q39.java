@@ -20,6 +20,39 @@
 // Input: candidates = [2], target = 1
 // Output: []
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Q39 {
-    
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (candidates == null || candidates.length == 0)
+            return result;
+        result = helper(result, new ArrayList<>(), candidates, target, 0, 0);
+        return result;
+    }
+
+    private List<List<Integer>> helper(List<List<Integer>> res, List<Integer> list, int[] nums, int target,
+            int sum, int i) {
+        if (i < nums.length) {
+            sum += nums[i];
+            list.add(nums[i]);
+            if (sum == target) {
+                List<Integer> temp = new ArrayList<Integer>();
+                temp.addAll(list);
+                res.add(temp);
+            }
+            if (sum > target) {
+                list.remove(list.size() - 1);
+                sum -= nums[i];
+                res = helper(res, list, nums, target, sum, i + 1);
+            } else {
+                res = helper(res, list, nums, target, sum, i);
+                list.remove(list.size() - 1);
+                sum -= nums[i];
+                res = helper(res, list, nums, target, sum, i + 1);
+            }
+        }
+        return res;
+    }
 }
