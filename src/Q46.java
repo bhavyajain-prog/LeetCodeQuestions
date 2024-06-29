@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Q46 {
     public List<List<Integer>> permute(int[] nums) {
-
+        
     }
 
     private List<List<Integer>> backtrack(int[] nums) {
