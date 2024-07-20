@@ -11,4 +11,13 @@ public class TreeNode {
         this.left = left;
         this.right = right;
     }
+    public static void print(TreeNode node) {
+        if (node == null) {
+            // System.out.print("null ");
+            return;
+        }
+        System.out.print(node.val + " ");
+        print(node.left);
+        print(node.right);
+    }
 }
