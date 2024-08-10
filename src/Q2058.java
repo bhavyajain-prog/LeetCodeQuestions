@@ -62,7 +62,7 @@ public class Q2058 {
             prev = curr;
             curr = curr.next;
         }
-        return new int[] { min, firstCriticalPoint==lastCriticalPoint?-1:lastCriticalPoint-firstCriticalPoint };
+        return new int[] { min, firstCriticalPoint == lastCriticalPoint ? -1 : lastCriticalPoint - firstCriticalPoint };
     }
 
     public static void main(String[] args) {
