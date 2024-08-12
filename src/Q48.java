@@ -17,23 +17,16 @@
 public class Q48 {
     public static void rotate(int[][] matrix) {
         int n = matrix.length;
-        for (int i = 0; i < n / 2; i++) {
-            for (int j = i; j < n - i - 1; j++) {
-                int t1, t2;
-                n = n - (2 * i);
-                t1 = matrix[j][n - 1 - i];
-                matrix[j][n - 1 - i] = matrix[i][j];
-                t2 = matrix[n - 1 - i][n - 1 - j];
-                matrix[n - 1 - i][n - 1 - j] = t1;
-                t1 = matrix[n - 1 - j][i];
-                matrix[n - 1 - j][i] = t2;
-                matrix[i][j] = t1;
-            }
-            for (int[] row : matrix) {
-                for (int num : row) {
-                    System.out.print(num + "\t");
-                }
-                System.out.println();
+        for (int layer = 0; layer < n / 2; layer++) {
+            int first = layer;
+            int last = n - 1 - layer;
+            for (int i = first; i < last; i++) {
+                int offset = i - first;
+                int top = matrix[first][i];
+                matrix[first][i] = matrix[last - offset][first];
+                matrix[last - offset][first] = matrix[last][last - offset];
+                matrix[last][last - offset] = matrix[i][last];
+                matrix[i][last] = top;
             }
         }
     }
