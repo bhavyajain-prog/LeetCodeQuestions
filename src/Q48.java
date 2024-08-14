@@ -32,7 +32,12 @@ public class Q48 {
     }
 
     public static void main(String[] args) {
-        int[][] arr = { { 5, 1, 9, 11 }, { 2, 4, 8, 10 }, { 13, 3, 6, 7 }, { 15, 14, 12, 16 } };
+        int[][] arr = new int[5][5];
+        for (int i = 0; i<5;i++) {
+            for (int j = 0; j<5;j++) {
+                arr[i][j] = i * 5 + j + 1;
+            }
+        }
         rotate(arr);
         for (int[] row : arr) {
             for (int num : row) {
