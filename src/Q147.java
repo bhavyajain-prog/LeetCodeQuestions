@@ -22,6 +22,23 @@ import DataStructures.ListNode;
 
 public class Q147 {
     public ListNode insertionSortList(ListNode head) {
+        if (head.next == null)
+            return head;
 
+        ListNode dummy = new ListNode(0);
+        ListNode curr = head;
+        ListNode temp = dummy;
+        while (curr != null) {
+            if (temp.val > curr.val)
+                temp = dummy;
+            while (temp.next != null && temp.next.val < curr.val) {
+                temp = temp.next;
+            }
+            ListNode nextNode = curr.next;
+            curr.next = temp.next;
+            temp.next = curr;
+            curr = nextNode;
+        }
+        return dummy.next;
     }
 }
