@@ -21,12 +21,12 @@ import DataStructures.ListNode;
 
 public class Q203 {
     public ListNode removeElements(ListNode head, int val) {
-        while (head!=null && head.val == val) {
+        while (head != null && head.val == val) {
             head = head.next;
         }
         if (head == null)
             return null;
-        ListNode curr = head.next, prev=head;
+        ListNode curr = head.next, prev = head;
         while (curr != null) {
             if (curr.val == val) {
                 prev.next = curr.next;
