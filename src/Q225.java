@@ -35,29 +35,62 @@ import java.util.Queue;
 public class Q225 {
     class MyStack {
         private Queue<Integer> queue;
-        
+
         public MyStack() {
             queue = new LinkedList<>();
         }
-        
+
         public void push(int x) {
-            int size = queue.size();
             queue.add(x);
-            for (int i = 0; i < size; i++)
+            int size = queue.size();
+            while (size > 1) {
                 queue.add(queue.remove());
+                size--;
+            }
         }
-        
+
         public int pop() {
             return queue.remove();
         }
-        
+
         public int top() {
             return queue.peek();
         }
-        
+
         public boolean empty() {
             return queue.isEmpty();
         }
     }
-}
 
+    class MyStackV2 {
+        private Queue<Integer> queue1;
+        private Queue<Integer> queue2;
+
+        public MyStackV2() {
+            queue1 = new LinkedList<>();
+            queue2 = new LinkedList<>();
+        }
+
+        public void push(int x) {
+            queue2.add(x);
+            while (!queue1.isEmpty()) {
+                queue2.add(queue1.remove());
+            }
+            Queue<Integer> temp = queue1;
+            queue1 = queue2;
+            queue2 = temp;
+        }
+
+        public int pop() {
+            return queue1.remove();
+        }
+
+        public int top() {
+            return queue1.peek();
+        }
+
+        public boolean empty() {
+            return queue1.isEmpty();
+        }
+    }
+}

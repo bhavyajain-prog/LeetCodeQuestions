@@ -18,27 +18,53 @@
 // 0 <= Node.val <= 9
 // It is guaranteed that the list represents a number that does not have leading zeros.
 
-import java.util.ArrayList;
-import java.util.List;
+// import java.util.ArrayList;
+// import java.util.List;
+import java.util.Stack;
 
 import DataStructures.ListNode;
 
 public class Q445 {
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
-        List<Integer> num1 = new ArrayList<>(), num2 = new ArrayList<>();
+        // List<Integer> num1 = new ArrayList<>(), num2 = new ArrayList<>();
+        // while (l1 != null) {
+        // num1.add(0, l1.val);
+        // l1 = l1.next;
+        // }
+        // while (l2 != null) {
+        // num2.add(0, l2.val);
+        // l2 = l2.next;
+        // }
+        // int carry = 0;
+        // while (!num1.isEmpty() || !num2.isEmpty()) {
+        // int digit1 = num1.isEmpty() ? 0 : num1.remove(0);
+        // int digit2 = num2.isEmpty() ? 0 : num2.remove(0);
+        // int sum = digit1 + digit2 + carry;
+        // carry = sum / 10;
+
+        // ListNode temp = new ListNode(sum % 10, dummy.next);
+        // dummy.next = temp;
+        // }
+        // if (carry > 0) {
+        // ListNode temp = new ListNode(carry, dummy.next);
+        // dummy.next = temp;
+        // }
+        // return dummy.next;
+
+        Stack<Integer> stack1 = new Stack<>(), stack2 = new Stack<>();
         while (l1 != null) {
-            num1.add(0, l1.val);
+            stack1.push(l1.val);
             l1 = l1.next;
         }
         while (l2 != null) {
-            num2.add(0, l2.val);
+            stack2.push(l2.val);
             l2 = l2.next;
         }
         int carry = 0;
-        while (!num1.isEmpty() || !num2.isEmpty()) {
-            int digit1 = num1.isEmpty() ? 0 : num1.remove(0);
-            int digit2 = num2.isEmpty() ? 0 : num2.remove(0);
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
+            int digit1 = stack1.isEmpty() ? 0 : stack1.pop();
+            int digit2 = stack2.isEmpty() ? 0 : stack2.pop();
             int sum = digit1 + digit2 + carry;
             carry = sum / 10;
 
